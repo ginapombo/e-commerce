@@ -1,4 +1,4 @@
-var categoriesArray = [];
+var productsArray = [];
 
 function showCategoriesList(array){
 
