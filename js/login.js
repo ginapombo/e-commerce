@@ -1,6 +1,28 @@
-//Función que se ejecuta una vez que se haya lanzado el evento de
-//que el documento se encuentra cargado, es decir, se encuentran todos los
-//elementos HTML presentes.
-document.addEventListener("DOMContentLoaded", function(e){
+function iniciarSesion(){
+
+	let usuario = document.getElementById('usuario').value;
+	let password = document.getElementById('password').value;
+	
+	if ((usuario !=='') && (password !=='')){
+		location.href= 'index.html';
+	}
+	else{
+		alert("Debe completar los campos")
+	}
+
+}
+
+$(function() {
+	'use strict';
+
+	
+  $('.form-control').on('input', function() {
+	  var $field = $(this).closest('.form-group');
+	  if (this.value) {
+	    $field.addClass('field--not-empty');
+	  } else {
+	    $field.removeClass('field--not-empty');
+	  }
+	});
 
 });

@@ -1,53 +1,91 @@
 <!DOCTYPE html>
-<!-- saved from url=(0049)https://getbootstrap.com/docs/4.3/examples/album/ -->
 <html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400&display=swap" rel="stylesheet">
 
-<head>
-  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <title>eMercado - Todo lo que busques está aquí</title>
+    <link rel="stylesheet" href="fonts/icomoon/style.css">
 
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
-  <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
-  <!-- Bootstrap core CSS -->
-  <link href="css/bootstrap.min.css" rel="stylesheet">
-  <link href="css/styles.css" rel="stylesheet">
-  <style>
-    html, body{
-      height: 100%;
-    }
+    <link rel="stylesheet" href="css/owl.carousel.min.css">
 
-    body {
-      display: -ms-flexbox;
-      display: flex;
-      -ms-flex-align: center;
-      align-items: center;
-      padding-top: 40px;
-      padding-bottom: 40px;
-      background-color: #f5f5f5;
-    }
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    
+    <!-- Style -->
+    <link rel="stylesheet" href="css/style.css">
 
-    .signin {
-      width: 100%;
-      max-width: 330px;
-      padding: 15px;
-      margin: auto;
-    }
-  </style>
-</head>
+    <title>Login</title>
+  </head>
+  <body>
+  
 
-<body class="text-center">
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 1 (Fecha de entrega: 08/08/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  
+  <div class="content">
+    <div class="container">
+      <div class="row justify-content-center">
+        <!-- <div class="col-md-6 order-md-2">
+          <img src="images/undraw_file_sync_ot38.svg" alt="Image" class="img-fluid">
+        </div> -->
+        <div class="col-md-6 contents">
+          <div class="row justify-content-center">
+            <div class="col-md-12">
+              <div class="form-block">
+                  <div class="mb-4">
+                  <h3><strong>Iniciar Sesión</strong></h3>
+                  <p class="mb-4">eMercado - Todo lo que busques está aquí<br>Tu e_commerce favorito!</p>
+                </div>
+                <form>
+                  <div class="form-group first">
+                    <label for="username">Usuario</label>
+                    <input type="text" class="form-control" id="usuario">
+
+                  </div>
+                  <div class="form-group last mb-4">
+                    <label for="password">Contraseña</label>
+                    <input type="password" class="form-control" id="password">
+                    
+                  </div>
+                  
+                  <div class="d-flex mb-5 align-items-center">
+                    <label class="control control--checkbox mb-0"><span class="caption">Recordarme</span>
+                      <input type="checkbox" checked="checked"/>
+                      <div class="control__indicator"></div>
+                    </label>
+                    <span class="ml-auto"><a href="#" class="forgot-pass">Olvidó su contraseña?</a></span> 
+                  </div>
+
+                 <input type="button" value="Iniciar Sesión" class="btn btn-pill text-white btn-block btn-primary" onclick= "iniciarSesion()">
+
+                  <span class="d-block text-center my-4 text-muted"> o inicia sesión con</span>
+                  
+                  <div class="social-login text-center">
+                    <a href="#" class="facebook">
+                      <span class="icon-facebook mr-3"></span> 
+                    </a>
+                    <a href="#" class="twitter">
+                      <span class="icon-twitter mr-3"></span> 
+                    </a>
+                    <a href="#" class="google">
+                      <span class="icon-google mr-3"></span> 
+                    </a>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+        
+      </div>
     </div>
   </div>
 
-  <script src="js/init.js"></script>
-  <script src="js/login.js"></script>
-</body>
+  
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/popper.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/login.js"></script>
+  </body>
 </html>
