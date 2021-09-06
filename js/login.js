@@ -4,6 +4,7 @@ function iniciarSesion(){
 	let password = document.getElementById('password').value;
 	
 	if ((usuario !=='') && (password !=='')){
+		setUser();  //Luego de validar los datos, queda el usuario guardado en localStorage
 		location.href= 'index.html';
 	}
 	else{
@@ -26,3 +27,8 @@ $(function() {
 	});
 
 });
+//Function para guardar el usuario
+function setUser(){
+	let usuario = document.getElementById('usuario').value; //Obtengo datos del usuario por su Id
+	localStorage.setItem('user', usuario); //Guardo el dato usuario como 'user'
+}

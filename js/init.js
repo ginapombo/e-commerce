@@ -45,3 +45,15 @@ var getJSONData = function(url){
 //elementos HTML presentes.
 document.addEventListener("DOMContentLoaded", function(e){
 });
+
+//Function para obtener el usuario guardado
+function getUser(){
+  let usuario = localStorage.getItem('user'); //Con la variable usuario, y desde localStorage.getItem obtengo 'user'
+  if((usuario !==undefined) && (usuario !=='')){ //Verifico si usuario no está undefinded ó vacío
+    document.getElementById("nombreUsuario").innerHTML += usuario; //Muesto el usuario guardado con Id 'nombreUsuario' en la barra nav
+  }
+}
+
+document.addEventListener("DOMContentLoaded", function(e){//Llamo getUser dentro de addEventListener de DOMContentLoaded para que la muestre luego que cargue el modelo DOM
+  getUser(); 
+})
