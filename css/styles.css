@@ -1,13 +1,14 @@
 .jumbotron, .card-body, .container, .site-header{
-    font-family: 'Raleway', serif !important;
+    font-family: 'Raleway', serif !important; 
 }
 
 .jumbotron .display-4{
     font-weight: bold;
 }
 
+
 .jumbotron {
-  height: 50vh;
+  height: 55vh;
   padding: 5em inherit;
   margin-bottom: 0;
   background-color: #53C0FB;
@@ -18,6 +19,16 @@
   color: black;
   font-weight: bold;
 }
+.portfolio-details {
+  position: absolute;
+  bottom: 25px;
+  left: 25px;
+  z-index: 9000;
+}
+
+.portfolio-details a p{
+  color: white;
+}
 
 @media (min-width: 768px) {
   .jumbotron {
@@ -25,6 +36,7 @@
     padding-bottom: 6rem;
   }
 }
+
 
 .jumbotron p:last-child {
   margin-bottom: 0;
