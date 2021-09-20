@@ -1,6 +1,6 @@
-var comments = [];
+var comments = []; //Lista de comentarios - comentarios de json y nuevos
 
-function saveComment() {
+function saveComment() { //Agrego el comentario a la lista
   let date = new Date(); //Obtengo fecha del momento - un nuevo objeto del tipo fecha
   let formatDate =
     date.getDate().toString().padStart(2, "0") +
