@@ -56,7 +56,6 @@ function showRelatedProducts(array){
     let relatedProducts = products[array[i]];
   //Genero el html
     htmlContentToAppend += `     
-                <div class="row">         
                   <div class="card" style="width: 18rem;">
                     <img src="` + relatedProducts.imgSrc + `" class="card-img-top" alt="...">
                     <div class="card-body">
@@ -64,8 +63,7 @@ function showRelatedProducts(array){
                      <p class="card-text">` + relatedProducts.description + `</p>
                      <small>` + relatedProducts.soldCount + ` vendidos </small>
                     </div>
-                  </div>
-                </div>`
+                  </div>`
 
     document.getElementById("relatedProducts").innerHTML = htmlContentToAppend; //Inserto en mi contenedor con id "relatedProducts", el html creado 
   }

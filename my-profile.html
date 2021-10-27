@@ -11,6 +11,7 @@
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.3/examples/album/">
   <link href="https://fonts.googleapis.com/css?family=Raleway:300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+  <link href="css/font-awesome.min.css" rel="stylesheet">
 
   <style>
     .bd-placeholder-img {
@@ -57,17 +58,49 @@
     </div>
   </nav>
 <!-- Sección -->
-  <div class="container p-5">
-    <div class="alert alert-danger" role="alert" style="position: relative; width:auto; top: 0;">
-      <h4 class="alert-heading">¡A trabajar! :)</h4>
-      <p>Esta sección corresponde a: Entrega 6 (Fecha de entrega: 31/10/2021).</p>
-      <hr>
-      <p class="mb-0">Para saber qué debes hacer, fijate en la actividad en CREA correspondiente a esta entrega.</p>
+  <main role="main">
+  <div class="container mt-5">
+    <div class="text-center p-4">
+      <h2>Mi Perfil</h2>
+      <p class="lead">Encontrarás aquí tus datos personales.</p>
     </div>
-  </div>
+    <dl>
+      <div class="container text-center">
+        <div class="row">
+          <div class="col">
+            <br>
+            <img class="img-fluid rounded mx-auto d-block" alt="Responsive image" src='https://avataaars.io/?avatarStyle=Circle&topType=LongHairStraight&accessoriesType=Prescription01&hairColor=BrownDark&facialHairType=Blank&clotheType=ShirtScoopNeck&clotheColor=Black&eyeType=Happy&eyebrowType=Default&mouthType=Smile&skinColor=Tanned'/>
+            <br>
+            <button type="button" class="btn btn-dark btn-sm">Subir imagen</button>
+          </div>
+          <br>
+          <div class="col">
+            <form>
+              <div class="form-row">
+                <div class="form-group col-md-8">
+                  <br>
+                  <h4>Datos Personales <i class="fas fa-user-edit"></i></h4>
+                  <br>
+                  <input type="text" class="form-control" id="nombre" placeholder="Nombre*">
+                  <br>
+                  <input type="text" class="form-control" id="apellido" placeholder="Apellido*">
+                  <br>
+                  <input type="text" class="form-control" id="edad" placeholder="Edad*">
+                  <br>
+                  <input type="text" class="form-control" id="telefono" placeholder="Teléfono*">
+                  <br>
+                  <button type="button" id="guardar" class="btn btn-dark btn-sm">Guardar datos</button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
 <!-- Footer-->
-  <footer class="text-muted bg-light">
-    <div class="container">
+<footer class="text-muted bg-light">
+  <div class="container">
+    <p class="float-right"></p>
       <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
       <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
     </div>

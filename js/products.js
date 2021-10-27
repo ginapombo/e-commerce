@@ -44,22 +44,18 @@ function showProductsList(){
         if (((minCost == undefined) || (minCost != undefined && parseInt(product.cost) >= minCost)) &&
             ((maxCost == undefined) || (maxCost != undefined && parseInt(product.cost) <= maxCost))) {
 
+
             htmlContentToAppend += `
-            <a href="product-info.html" class="list-group-item list-group-item-action">
-            <div class="row">
-                <div class="col-3">
-                    <img src="` + product.imgSrc + `" alt="` + product.description + `" class="img-thumbnail">
-                </div>
-                <div class="col">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h4 class="mb-1">`+ product.name +`</h4>
-                        <small class="text-muted">` + product.soldCount + ` vendidos</small>
-                    </div>
-                    
-                    <p class="text-muted">` + product.description + ` </p>
-                    <br><b class="text-muted">` + product.currency + ` ` + product.cost + `</b>
-                </div>
-            </div>
+            <div class="col-md-6 col-lg-6">
+             <a href="product-info.html" class="card mb-4 shadow-sm custom-card">
+             <img class="bd-placeholder-img card-img-top"  src="` + product.imgSrc + `">
+             <h3 class="m-3">`+ product.name +`</h3>
+             <div class="card-body">
+              <p class="card-text">` + product.description + `</p>
+              <small class="text-muted">` + product.soldCount + ` vendidos</small>
+              <br><b class="text-muted">` + product.currency + ` ` + product.cost + `</b>
+             </div>
+             </a>
             </div>
             `
         }
@@ -137,3 +133,4 @@ document.addEventListener("DOMContentLoaded", function (e) {
     });
 });
 
+    
