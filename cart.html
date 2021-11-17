@@ -37,7 +37,8 @@
 <body>
 <!-- Nav Bar -->
   <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
+      aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
@@ -47,153 +48,206 @@
         <a class="nav-item nav-link pr-5 pl-5" href="products.html">Productos</a>
         <a class="nav-item nav-link pr-5 pl-5" href="sell.html">Vender</a>
         <div class="dropdown pr-5 pl-5">
-          <a id="nombreUsuario" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
+          <a id="nombreUsuario" class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"></a>
           <div class="dropdown-menu mr-auto" aria-labelledby="dropdownMenuLink">
             <a class="dropdown-item" href="my-profile.html">Perfil</a>
             <a class="dropdown-item" href="cart.html">Mis compras</a>
             <a id="signOut" class="dropdown-item">Cerrar Sesión</a>
           </div>
+        </div>
       </div>
     </div>
-    </div>
   </nav>
+<!-- Información de la Compra -->
   <main role="main">
     <div class="container mt-5">
       <div class="text-center p-4">
         <h2>Mis Compras</h2>
         <p class="lead">Encontrarás aquí todo el detalle de tu compra.</p>
       </div>
-    <div class="container p-5">
-      <div class="row d-flex justify-content-center">
-        <table class="table table-hover">
-          <thead>
-            <tr>
-             <th scope="col">#</th>
-             <th scope="col">Producto</th>
-             <th scope="col">Precio Unitario</th>
-             <th scope="col">Cantidad</th>
-             <th scope="col">Subtotal UYU</th>
-            </tr>
-          </thead>
-          <tbody id="bodyTable"></tbody>
-        </table>
+<!-- Productos -->
+      <div class="container p-5 bg-light">
+        <div class="row d-flex justify-content-center">
+          <table class="table table-hover text-center">
+            <thead>
+              <tr>
+                <th scope="col">#</th>
+                <th scope="col">Producto</th>
+                <th scope="col">Precio Unitario</th>
+                <th scope="col">Cantidad</th>
+                <th scope="col">Subtotal UYU</th>
+                <th scope="col">Eliminar</th>
+              </tr>
+            </thead>
+            <tbody id="bodyTable"></tbody>
+          </table>
+        </div>
+        <hr class="mb-4">
+<!-- Método de Envío -->
+        <form onsubmit="return validarCompra();">
+          <h5 class="mb-3">Método de Envío <i class="fas fa-shipping-fast"></i></h5>
+          <label>Dirección</label>
+          <div class="form-row">
+            <div class="col-md-8">
+              <input required type="text" class="form-control" placeholder="Calle">
+            </div>
+            <div class="col">
+              <input required type="text" class="form-control" placeholder="Número">
+            </div>
+          </div>
+          <br>
+          <div class="form-row">
+            <div class="col">
+              <input required type="text" class="form-control" placeholder="Esquina">
+            </div>
+            <div class="col">
+              <input required type="text" class="form-control" placeholder="Pais">
+            </div>
+          </div>
+          <br>
+<!-- Tipo de Envío -->
+          <h5 class="mb-3">Tipo de Envío</h5>
+          <div class="d-block my-3">
+            <div class="custom-control custom-radio">
+              <input id="premium" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="premium">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="express" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="express">Express (5-8 días) - Costo del 7% sobre el subtotal</label>
+            </div>
+            <div class="custom-control custom-radio">
+              <input id="standard" name="publicationType" type="radio" class="custom-control-input" required>
+              <label class="custom-control-label" for="standard">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label>
+            </div>
+          </div>
+          <hr class="mb-4">
+<!-- Costos -->
+          <h5 class="mb-3">Costos <i class="fas fa-dollar-sign"></i></h5>
+          <ul class="list-group mb-3">
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Subtotal</h6>
+                <small class="text-muted">Unitario de los productos</small>
+              </div>
+              <span class="text-muted" id="subtotal">-</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between lh-condensed">
+              <div>
+                <h6 class="my-0">Envío</h6>
+                <small class="text-muted">Según el tipo de envío</small>
+              </div>
+              <span class="text-muted" id="envio">0</span>
+            </li>
+            <li class="list-group-item d-flex justify-content-between">
+              <span>Total ($)</span>
+              <strong id="totalFinal">-</strong>
+            </li>
+          </ul>
+          <hr class="mb-4">
+<!-- Forma de Pago -->
+          <h5 class="mb-3">Forma de Pago <i class="far fa-credit-card"></i></h5>
+          
+          <button type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModal">
+              Seleccionar
+          </button>
+         
+          <hr class="mb-4">
+          <div class="row justify-content-center">
+            <button class="btn btn-dark btn-lg" type="submit">Comprar</button>
+          </div>
+        </form>
       </div>
-    <hr class="mb-4">
-    <h5 class="mb-3">Método de Envío <i class="fas fa-shipping-fast"></i></h5>
-    <form>
-     <label>Dirección</label>
-     <div class="form-row">
-      <div class="col-md-8">
-        <input type="text" class="form-control" placeholder="Calle">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Número">
-      </div>
-    </div>
-    <br>
-    <div class="form-row">
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Esquina">
-      </div>
-      <div class="col">
-        <input type="text" class="form-control" placeholder="Pais">
-      </div>
-    </div>
-    </form>
-  <br>
-  <h5 class="mb-3">Tipo de Envío</h5>
-  <div class="d-block my-3">
-    <div class="custom-control custom-radio">
-      <input id="goldradio" name="publicationType" type="radio" class="custom-control-input" checked="" required="">
-      <label class="custom-control-label" for="goldradio">Premium (2-5 días) - Costo del 15% sobre el subtotal.</label>
-    </div>
-    <div class="custom-control custom-radio">
-      <input id="premiumradio" name="publicationType" type="radio" class="custom-control-input" required="">
-      <label class="custom-control-label" for="premiumradio">Express (5-8 días) - Costo del 7% sobre el subtotal</label>
-    </div>
-    <div class="custom-control custom-radio">
-      <input id="standardradio" name="publicationType" type="radio" class="custom-control-input" required="">
-      <label class="custom-control-label" for="standardradio">Standard (12 a 15 días) - Costo del 5% sobre el subtotal.</label>
-    </div>
-  </div>
-  <hr class="mb-4">
-  <h5 class="mb-3">Costos <i class="fas fa-dollar-sign"></i></h5>
-  <ul class="list-group mb-3">
-    <li class="list-group-item d-flex justify-content-between lh-condensed">
-      <div>
-        <h6 class="my-0">Subtotal</h6>
-        <small class="text-muted">Unitario de los productos</small>
-      </div>
-    <span class="text-muted" id="subtotal">-</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between lh-condensed">
-      <div>
-        <h6 class="my-0">Envío</h6>
-        <small class="text-muted">Según el tipo de envío</small>
-      </div>
-      <span class="text-muted" id="envio">0</span>
-    </li>
-    <li class="list-group-item d-flex justify-content-between">
-      <span>Total ($)</span>
-      <strong id="totalFinal">-</strong>
-    </li>
-  </ul>
-  <hr class="mb-4">
-  <h5 class="mb-3">Forma de Pago <i class="far fa-credit-card"></i></h5>
-  <form>
-    <div class="form-row">
-      <div class="form-group col-md-6">
-        <label>Número de Tarjeta</label>
-        <input class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx">
-      </div>
-      <div class="form-group col-md-2">
-        <label>Caducidad</label>
-        <input class="form-control" placeholder="MM/AA">
-      </div>
-    </div>
-   <div class="form-row">
-    <div class="form-group col-md-6">
-      <label>Titular de la Tarjeta</label>
-      <input type="text" class="form-control" placeholder="Nombre Apellido">
-    </div>
-    <div class="form-group col-md-2">
-      <label>CVV</label>
-      <input class="form-control" placeholder="XXX">
-    </div>
-  </div>
-  <button class="btn btn-dark btn-lg" type="submit">Comprar</button>
-  </form>
-  <div id="spinner-wrapper">
-    <div class="lds-ring">
-      <div></div>
-      <div></div>
-      <div></div>
-      <div></div>
-    </div>
-  </div>
+      <br>
 <!-- Footer-->
-<footer class="text-muted">
-  <div class="container">
-    <p class="float-right">
-      <a href="#">Volver arriba</a>
-    </p>
-    <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
-    <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
-  </div>
-</footer>
-<div id="spinner-wrapper">
-  <div class="lds-ring">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-  </div>
-</div>
-  <script src="js/jquery-3.4.1.min.js"></script>
-  <script src="js/bootstrap.bundle.min.js"></script>
-  <script src="js/dropzone.js"></script>
-  <script src="js/init.js"></script>
-  <script src="js/cart.js"></script>
+  <footer class="text-muted">
+        <div class="container">
+          <p class="float-right">
+            <a href="#">Volver arriba</a>
+          </p>
+          <p>Este sitio forma parte de Desarrollo Web - JAP - 2020</p>
+          <p>Clickea <a target="_blank" href="Letra.pdf">aquí</a> para descargar la letra del obligatorio.</p>
+        </div>
+      </footer>
+<!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel">Seleccionar forma de pago</h5> 
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <form class="needs-validation" novalidate onsubmit="return habilitarCompra();"><!-- Primero validará los campos del formulario y devolverá un valor booleano verdadero o falso. Dependiendo del valor, el formulario se enviará o no -->
+                <div class="d-block my-3">
+                  <div id="tarConteiner" class="custom-control custom-radio form-check">
+                    <input id="tarjeta" onclick="formTarjeta();" name="publicationType" type="radio"
+                      class="custom-control-input" required>
+                    <label class="custom-control-label" for="tarjeta">Tarjeta de crédito <i class="fas fa-credit-card"></i></label>
+                    <br>
+                    <div id="formTarjeta" style="display: none;">
+                      <br>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Número de Tarjeta</label>
+                          <input id="nroTarjeta" class="form-control" placeholder="xxxx-xxxx-xxxx-xxxx" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label>Caducidad</label>
+                          <input id="caducidad" class="form-control" placeholder="MM/AA" required>
+                        </div>
+                      </div>
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <label>Titular de la Tarjeta</label>
+                          <input id="titular" type="text" class="form-control" placeholder="Nombre Apellido" required>
+                        </div>
+                        <div class="form-group col-md-3">
+                          <label>CVV</label>
+                          <input id="cvv" class="form-control" placeholder="XXX" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <br>
+                  <div id="transfConteiner" class="custom-control custom-radio form-check">
+                    <input id="transferencia" onclick="formTransferencia();" name="publicationType"
+                      type="radio" class="custom-control-input">
+                    <label class="custom-control-label" for="transferencia">Transferencia bancaria <i class="fas fa-university"></i></label>
+                    <br>
+                    <div id="formTransferencia" style="display: none;">
+                      <div class="form-row">
+                        <div class="form-group col-md-6">
+                          <br>
+                          <label>Número de cuenta bancaria</label>
+                          <input id="nroCuenta" class="form-control" placeholder="01 2345 6789" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <button type="submit" class="btn btn-dark float-right">Confirmar</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="spinner-wrapper">
+        <div class="lds-ring">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
+      <script src="js/jquery-3.4.1.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/dropzone.js"></script>
+      <script src="js/init.js"></script>
+      <script src="js/cart.js"></script>
 </body>
 
 </html>

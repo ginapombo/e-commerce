@@ -46,7 +46,8 @@ function showCart(){
     <td>${cart.currency} ${cart.unitCost}</td>
     <td><input type="number" min="1" class="text-center" onchange="subtotalCost(${i})" value="${cart.count}" name="" id="${i}"></td> 
     <td id="subtotal${i}">${subtotal}</td>
-  </tr> `;
+    <td><button type="button" class="btn btn-dark"><i class="fas fa-trash"></i></td>
+    </tr> `;
   document.getElementById("bodyTable").innerHTML += html; //Con id"bodyTable" inserto en mi contenedor el html creado
   }
 }
@@ -69,6 +70,130 @@ document.addEventListener("DOMContentLoaded", function (e) {
   });
 });
   
+//Función para mostrar en el modal el formulario de pagar con tarjeta
+function formTarjeta(){
+  document.getElementById("formTarjeta").style.display = 'block'; //Muestro el form de pagar con tarjeta
+  document.getElementById("formTransferencia").style.display = 'none'; //Oculto el form de pagar con transferencia bancaria
 
+  document.getElementById("nroCuenta").disabled = true; //Inhabilito campo de nro de cuenta
+
+  document.getElementById("nroTarjeta").disabled = false; //Habilito todos los campos del form para pagar con tarjeta
+  document.getElementById("titular").disabled = false;
+  document.getElementById("cvv").disabled = false;
+  document.getElementById("caducidad").disabled = false;
+};
+
+//Función para mostrar en el modal el formulario de pagar con transferencia bancaria
+function formTransferencia(){
+  document.getElementById("formTarjeta").style.display = 'none'; //Oculto el form de pagar con tarjeta
+  document.getElementById("formTransferencia").style.display = 'block'; //Muestro el form de pagar con transferencia bancaria
+
+  document.getElementById("nroTarjeta").disabled = true;//Inhabilito campos del form para pagar con transferencia bancaria
+  document.getElementById("titular").disabled = true;
+  document.getElementById("cvv").disabled = true;
+  document.getElementById("caducidad").disabled = true;
+
+  document.getElementById("nroCuenta").disabled = false; //Habilito todos los campos del form para pagar con transferencia bancaria
+
+};
+
+
+//Calcular el costo de envío según porcentaje
+comissionPercentage = 0;
+document.getElementById("premium").addEventListener("change", function(){
+  comissionPercentage = 0.15;
+  updateTotalCosts();
+});
+
+document.getElementById("express").addEventListener("change", function(){
+  comissionPercentage = 0.07;
+  updateTotalCosts();
+});
+
+document.getElementById("standard").addEventListener("change", function(){
+  comissionPercentage = 0.05;
+  updateTotalCosts();
+});
+
+
+//Función para actualizar los costos de publicación
+function updateTotalCosts(){
+  let subtotal = parseFloat(document.getElementById("subtotal").innerHTML);
   
-  
+  let costoEnvio = subtotal * comissionPercentage;
+  document.getElementById("envio").innerHTML = costoEnvio;
+
+  let total =  subtotal +  costoEnvio;
+  document.getElementById("totalFinal").innerHTML = total;
+}
+
+
+// Deshabilitar el envío de formularios del modal si hay campos no válidos
+(function() {
+  'use strict';
+  window.addEventListener('load', function() {
+// Obtener todos los formularios a los que queremos aplicar estilos de validación
+    var forms = document.getElementsByClassName('needs-validation');
+// Bucle sobre ellos y evitar la presentación
+    var validation = Array.prototype.filter.call(forms, function(form) {
+      form.addEventListener('submit', function(event) {
+        if (form.checkValidity() === false) {
+          event.preventDefault();
+          event.stopPropagation();
+        }
+        form.classList.add('was-validated');
+      }, false);
+    });
+  }, false);
+})();
+
+
+function validarCompra() {
+  if (document.getElementById("tarjeta").checked) {
+      let tarjeta = document.getElementById("nroTarjeta").value;
+      let titular = document.getElementById("titular").value;
+      let cvv = document.getElementById("cvv").value;
+      let caducidad = document.getElementById("caducidad").value;
+
+      if ((tarjeta != "") && (titular != "") && (caducidad != "") && (cvv != "")){
+          alert("Compra finalizada con éxito!");
+          return true
+      } else {
+          alert("Completar campos de tarjeta");
+          return false;
+      }
+  } else if(document.getElementById("transferencia").checked) {
+       let nrocuenta = document.getElementById("nroCuenta").value;
+       if (nrocuenta != ""){
+              alert("Compra finalizada con éxito!");
+              return true
+       } else {
+          alert("Completar campos de transferencia");
+          return false;   
+       }
+  } else if (!(document.getElementById("tarjeta").checked || document.getElementById("transferencia").checked)){
+      alert("Seleccionar forma de pago");
+      return false;
+  }    
+}
+
+function habilitarCompra(){
+   if (document.getElementById("tarjeta").checked) {
+      let tarjeta = document.getElementById("nroTarjeta").value;
+      let titular = document.getElementById("titular").value;
+      let cvv = document.getElementById("cvv").value;
+      let caducidad = document.getElementById("caducidad").value;
+
+      if ((tarjeta != "") && (titular != "") && (caducidad != "") && (cvv != "")){
+          //jquery
+         $("#exampleModal").modal('hide');
+      }
+  } else if(document.getElementById("transferencia").checked) {
+       let nrocuenta = document.getElementById("nroCuenta").value;
+       if (nrocuenta != ""){
+          //jquery
+         $("#exampleModal").modal('hide');
+       }
+  }
+  return false;
+}
